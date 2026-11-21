@@ -1,0 +1,64 @@
+:root {
+  --bg: #f5f6f8;
+  --card: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --accent: #2563eb;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+.page { max-width: 1280px; margin: 0 auto; padding: 24px 16px; }
+
+header h1 { margin: 0 0 6px; font-size: 28px; }
+.lede { margin: 0 0 20px; color: var(--muted); max-width: 760px; }
+
+.controls {
+  display: flex; flex-wrap: wrap; gap: 16px; align-items: center;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 10px; padding: 14px 16px; margin-bottom: 12px;
+}
+.control { min-width: 220px; flex: 1; }
+.control.wide { flex: 2; }
+.control label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+
+.upload-control { min-width: 180px; }
+.btn {
+  padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px;
+  background: var(--card); cursor: pointer;
+}
+.btn:hover { border-color: var(--accent); }
+.status { font-size: 13px; color: var(--muted); }
+.controls-heading { flex-basis: 100%; font-size: 14px; font-weight: 700; }
+.card-toolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; margin-top: 8px;
+}
+.btn-small { padding: 5px 10px; font-size: 12px; }
+.control-question, .chart-note {
+  margin: 8px 0 0; color: var(--muted); font-size: 12px; line-height: 1.45;
+}
+.grid {
+  display: grid; gap: 16px; margin-top: 8px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+
+.card {
+  min-width: 0;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px;
+}
+.card h3 { margin: 0; font-size: 17px; }
+.subtitle { margin: 4px 0 8px; color: var(--muted); font-size: 13px; }
+
+.custom-slot {
+  height: 360px; display: flex; align-items: center; justify-content: center;
+  color: var(--muted); border: 1px dashed var(--border); border-radius: 8px;
+}

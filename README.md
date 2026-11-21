@@ -11,3 +11,8 @@ City Hotel cancels more almost every month, but Resort cancellations caught up b
 ![Chart 3](report/figures/chart3.png)
 
 [View interactive version on Tableau Public](https://public.tableau.com/app/profile/avanish.rawat/viz/HotelBookingCancellationsChart3CancellationTrend_/Chart3)
+
+### Chart 2: Lead Time vs. Average Daily Rate
+Bookings made further ahead cancel more.
+
+![Chart 2](report/figures/chart2.png)
