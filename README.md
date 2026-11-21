@@ -42,6 +42,18 @@ Done in [`data/clean.py`](data/clean.py).
 | Derived in charts | cancellation rate | Share of bookings with `is_canceled` = 1 | — |
 | Derived in charts | lead-time and ADR ranges | 30-day and €50 bins used by Chart 2 | — |
 
+## Charts
+
+All four charts are built for **hotel revenue managers**, who decide deposit
+rules and how many rooms to overbook.
+
+| Chart | Question it answers (for revenue managers) | Chart type | Interaction |
+|---|---|---|---|
+| Chart 1 | Which kinds of bookings (deposit type, market segment, customer type, distribution channel, meal plan) cancel most, so I know where to require deposits? | Bar chart | Dropdown to switch the category, tooltip, click a bar to filter the other charts |
+| Chart 2 | Are bookings made further ahead, or at a higher average daily rate (ADR), canceled more, so I know which bookings need overbooking cover? | Heatmap | Tooltip, click a cell to filter Charts 1, 3 and 4 |
+| Chart 3 | When in the year do cancellations peak at each hotel, so I know when to tighten or relax booking rules? | Line chart | Tooltip, click or box/lasso select months to filter Chart 2, zoom |
+| Chart 4 | Which countries do canceled bookings come from, so I can target deposit rules by market? | Custom D3 map | Tooltip on hover |
+
 ## Tableau Draft (Milestone 1)
 
 ### Chart 2: Lead Time vs. Average Daily Rate
