@@ -156,7 +156,7 @@ def load_data(contents, _clicks, filename):
 )
 def set_filter_options(key):
     df = DATA[key]
-    hotels = sorted(df["hotel"].unique())
+    hotels = sorted(df["hotel"].astype(str).unique())
     years = sorted(int(y) for y in df["arrival_date_year"].unique())
     return (hotels, years[0], years[-1], {y: str(y) for y in years},
             False, False)
@@ -250,7 +250,7 @@ def update_chart2(key, hotels, years, months):
     if df is None:
         return EMPTY
     if months:
-        keys = (df["hotel"] + "|" + df["arrival_date_year"].astype(str) + "-"
+        keys = (df["hotel"].astype(str) + "|" + df["arrival_date_year"].astype(str) + "-"
                 + df["arrival_month_num"].astype(str))
         df = df[keys.isin([f"{h}|{y}-{m}" for h, y, m in months])]
     with FIGURE_LOCK:

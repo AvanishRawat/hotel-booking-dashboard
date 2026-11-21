@@ -37,4 +37,9 @@ def clean(df):
     df["arrival_month_num"] = df["arrival_date"].dt.month
     df["total_nights"] = df["stays_in_weekend_nights"] + df["stays_in_week_nights"]
 
+    # 4. Store text columns as categories: same values, ~5x less memory
+    #    (keeps the app within the free Render server's 512 MB)
+    text_columns = df.select_dtypes(include="object").columns
+    df[text_columns] = df[text_columns].astype("category")
+
     return df

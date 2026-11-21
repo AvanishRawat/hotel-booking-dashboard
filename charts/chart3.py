@@ -18,7 +18,7 @@ def make_chart3(df):
                 data["arrival_date"].dt.to_period("M").dt.to_timestamp()
             )
         )
-        .groupby(["hotel", "arrival_month"], as_index=False)
+        .groupby(["hotel", "arrival_month"], as_index=False, observed=True)
         .agg(
             cancellation_rate=("is_canceled", "mean"),
             bookings=("is_canceled", "size"),
