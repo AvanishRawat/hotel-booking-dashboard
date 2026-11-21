@@ -23,7 +23,10 @@ from data.clean import clean, parse_upload
 SAMPLE_FILE = ROOT / "data" / "hotel_bookings.csv"
 
 # Loaded datasets, kept on the server. The browser only stores the key.
+# Keep only the most recent few so the free Render server doesn't run out of
+# memory (each copy of the full dataset is roughly 100 MB).
 DATA = {}
+MAX_DATASETS = 2
 
 app = Dash(__name__, title="Hotel Cancellations",
            assets_folder=str(ROOT / "assets"))
@@ -134,6 +137,8 @@ def load_data(contents, _clicks, filename):
     except Exception as error:
         return None, f"Could not load {filename}: {error}"
 
+    if len(DATA) >= MAX_DATASETS:
+        DATA.pop(next(iter(DATA)))   # forget the oldest one
     key = str(uuid.uuid4())
     DATA[key] = df
     return key, f"Loaded {filename}: {len(df):,} bookings after cleaning."
