@@ -18,15 +18,15 @@ from charts.chart1 import make_chart1
 from charts.chart2 import (LEAD_MAX, LEAD_STEP, PRICE_MAX, PRICE_STEP,
                            label, lead_bin, make_chart2, price_bin)
 from charts.chart3 import make_chart3
-from data.clean import clean, parse_upload
-
-SAMPLE_FILE = ROOT / "data" / "hotel_bookings.csv"
+from data.clean import clean, parse_upload, read_bookings
 
 # Loaded datasets, kept on the server. The browser only stores the key.
-# Keep only the most recent few so the free Render server doesn't run out of
-# memory (each copy of the full dataset is roughly 100 MB).
-DATA = {}
-MAX_DATASETS = 2
+# The sample is loaded once when the server starts, so the button is instant.
+# Uploads are capped so the free Render server (512 MB) doesn't run out of
+# memory.
+SAMPLE_KEY = "sample"
+DATA = {SAMPLE_KEY: clean(read_bookings(ROOT / "data" / "hotel_bookings.csv"))}
+MAX_UPLOADS = 2
 
 app = Dash(__name__, title="Hotel Cancellations",
            assets_folder=str(ROOT / "assets"))
@@ -128,17 +128,18 @@ app.layout = html.Div(className="page", children=[
     prevent_initial_call=True,
 )
 def load_data(contents, _clicks, filename):
+    if ctx.triggered_id == "sample-btn":
+        df = DATA[SAMPLE_KEY]
+        return SAMPLE_KEY, f"Loaded default sample data: {len(df):,} bookings after cleaning."
+
     try:
-        if ctx.triggered_id == "sample-btn":
-            filename = "default sample data"
-            df = clean(pd.read_csv(SAMPLE_FILE))
-        else:
-            df = clean(parse_upload(contents, filename))
+        df = clean(parse_upload(contents, filename))
     except Exception as error:
         return None, f"Could not load {filename}: {error}"
 
-    if len(DATA) >= MAX_DATASETS:
-        DATA.pop(next(iter(DATA)))   # forget the oldest one
+    uploads = [k for k in DATA if k != SAMPLE_KEY]
+    if len(uploads) >= MAX_UPLOADS:
+        DATA.pop(uploads[0])   # forget the oldest upload
     key = str(uuid.uuid4())
     DATA[key] = df
     return key, f"Loaded {filename}: {len(df):,} bookings after cleaning."
