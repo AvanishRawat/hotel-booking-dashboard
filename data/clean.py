@@ -32,6 +32,8 @@ def parse_upload(contents, filename):
 
 
 def clean(df):
+    df = df.copy()   # work on our own copy (avoids pandas copy warnings)
+
     # 1. Missing values
     df["children"] = df["children"].fillna(0)
     df["country"] = df["country"].fillna("Unknown")
@@ -39,7 +41,7 @@ def clean(df):
 
     # 2. Remove impossible rows
     df = df[(df["adr"] >= 0) & (df["adr"] < 1000)]                  # bad prices
-    df = df[df["adults"] + df["children"] + df["babies"] > 0]        # no guests
+    df = df[df["adults"] + df["children"] + df["babies"] > 0].copy() # no guests
 
     # 3. Derived columns
     df["arrival_date"] = pd.to_datetime(
