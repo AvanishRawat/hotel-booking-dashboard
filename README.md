@@ -52,9 +52,16 @@ rules and how many rooms to overbook.
 | Chart 1 | Which kinds of bookings (deposit type, market segment, customer type, distribution channel, meal plan) cancel most, so I know where to require deposits? | Bar chart | Dropdown to switch the category, tooltip, click a bar to filter the other charts |
 | Chart 2 | Are bookings made further ahead, or at a higher average daily rate (ADR), canceled more, so I know which bookings need overbooking cover? | Heatmap | Tooltip, click a cell to filter Charts 1, 3 and 4 |
 | Chart 3 | When in the year do cancellations peak at each hotel, so I know when to tighten or relax booking rules? | Line chart | Tooltip, click or box/lasso select months to filter Chart 2, zoom |
-| Chart 4 | Which countries do canceled bookings come from, so I can target deposit rules by market? | Custom D3 map | Tooltip on hover |
+| Chart 4 | How long before arrival do guests cancel, so I know which cancellations leave time to resell the room and which need overbooking cover? | Custom D3 "Cancellation Countdown" (one distribution curve per group, counting down to arrival day) | Tooltip on hover; rows follow Chart 1's category dropdown; click a row to filter the other charts |
 
 ## Tableau Draft (Milestone 1)
+
+### Chart 1: Cancellation Rate by Deposit Type
+Non Refund bookings cancel most: 99% vs 37% overall.
+
+![Chart 1](report/figures/chart1.png)
+
+[View interactive version on Tableau Public](https://public.tableau.com/app/profile/sebastian.giraldo4721/viz/HotelBookings-Chart1/Chart1)
 
 ### Chart 2: Lead Time vs. Average Daily Rate
 Bookings made further ahead cancel more.
@@ -69,3 +76,12 @@ City Hotel cancels more almost every month, but Resort cancellations caught up b
 ![Chart 3](report/figures/chart3.png)
 
 [View interactive version on Tableau Public](https://public.tableau.com/app/profile/avanish.rawat/viz/HotelBookingCancellationsChart3CancellationTrend_/Chart3)
+
+### Chart 4 (mock of the custom chart): Cancellation Countdown
+Group bookings cancel months ahead; Direct and Corporate cancel in the final weeks.
+Each row shows when that segment's cancellations happen, counting down to arrival day (0).
+The final Dash version is a custom D3 component.
+
+![Chart 4 mock](report/figures/chart4_mock.png)
+
+[View interactive version on Tableau Public](https://public.tableau.com/app/profile/sebastian.giraldo4721/viz/HotelBookings-Chart1/Chart4mock)
