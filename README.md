@@ -56,6 +56,14 @@ rules and how many rooms to overbook.
 
 ## Tableau Draft (Milestone 1)
 
+**Submitted draft (all four charts on one dashboard):**
+[View the combined dashboard on Tableau Public](https://public.tableau.com/app/profile/avanish.rawat/viz/draft_17953773327000/Dashboard) · Workbook: [`tableau/draft.twbx`](tableau/draft.twbx)
+
+Clicking a deposit type in Chart 1 filters the other three charts, and the Hotel filter narrows the view to one hotel.
+
+The sections below show each chart as built by its owner.
+
+
 ### Chart 1: Cancellation Rate by Deposit Type
 Non Refund bookings cancel most: 99% vs 37% overall.
 
