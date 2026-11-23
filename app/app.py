@@ -113,7 +113,7 @@ app.layout = html.Div(className="page", children=[
     ]),
 
     html.Main(className="grid", children=[
-        chart_card("chart1", "Chart 1: Which bookings are riskiest?",
+        chart_card("chart1", "Chart 1: Which kinds of bookings are canceled most?",
                    "Each bar is the share of a group's bookings that were "
                    "canceled; the dotted line is all bookings. Groups with "
                    "fewer than 20 bookings are not shown. TA = travel agent, "
